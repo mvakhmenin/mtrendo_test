@@ -1,0 +1,40 @@
+version: 2
+
+models:
+- name: top_taxi_ids
+  description: три машины, получившие наибольшее количество чаевых в апреле 2018 года		
+  columns:
+  - name: taxi_id
+    description: идентификатор машины
+    tests:
+      - unique
+  - name: tips_sum
+    description: сумма чаевых в апреле 2018 года
+  - name: year
+    description: год начала поездки (в соответствии с условиями задачи всегда 2018)
+  - name: month
+    description: месяц начала поездки (в соответствии с условиями задачи всегда 4)
+- name: main_report
+  description: объединение данных по трем машинам, получивших наибольшее количество чаевых в апреле 2018 года, с данными по этим машинам за другие периоды
+  columns:
+  - name: taxi_id
+    description: идентификатор машины
+  - name: tips_sum
+    description: сумма чаевых
+  - name: year
+    description: год начала поездки
+  - name: month
+    description: месяц начала поездки
+- name: output
+  description: финальный отчет (к main_report добавлен столбец со сравнением суммы чаевых к предыдущему периоду)
+  columns:
+  - name: taxi_id
+    description: идентификатор машины
+  - name: tips_sum
+    description: сумма чаевых
+  - name: year
+    description: год начала поездки
+  - name: month
+    description: месяц начала поездки
+  - name: tips_change
+    description: изменение суммы чаевых в процентах в последующие месяцы по сравнению с предыдущим 
